@@ -15,8 +15,6 @@ def if_contains(s) -> Condition:
         return s in r.text.lower()
     return case
 
-success = """Понял - принял. Прибуду через 40 минут"""
-
 
 class IdealView(View, ABC):
     message: str
@@ -153,9 +151,23 @@ class Round4(IdealView):
         return commands
 
 
+class Success(View):
+    def commands(self):
+        return [[Command('Начать сначала', Round1.switch)]]
+
+    def default(self, r: Request) -> Awaitable[Any]:
+        return await Round1.switch(r)
+
+    @classmethod
+    def switch(cls, r: Request) -> Awaitable[Any]:
+        await super().switch(r)
+        return r.resp("""Понял - принял. Прибуду через 40 минут""")
+
+
 main = Router(gen_state_cases([
     Round1,
     Round2,
     Round3,
     Round4,
+    Success,
 ]), default=Round1.switch)
