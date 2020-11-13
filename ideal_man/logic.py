@@ -162,7 +162,7 @@ class Success(View):
     @classmethod
     async def switch(cls, r: Request) -> Awaitable[Any]:
         await super().switch(r)
-        return r.resp("""Понял - принял. Прибуду через 40 минут""")
+        return r.resp("""Понял - принял. Прибуду через 40 минут""", cls(r).keyboard)
 
 
 main = Router(gen_state_cases([
