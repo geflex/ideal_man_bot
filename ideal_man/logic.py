@@ -71,6 +71,7 @@ class IdealView(View, ABC):
 
 class Round1(IdealView):
     message = """Итак, выбирай, чем ты хочешь заняться сегодня: 
+    
 {}"""
 
     async def next(self, r: Request):
@@ -134,6 +135,7 @@ class Round3(IdealView):
 class Round4(IdealView):
     message = """Хорошо, финал
 Выбери, где мне купить еду: 
+
 {}"""
 
     async def next(self, r: Request):
