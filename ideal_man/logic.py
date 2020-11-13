@@ -137,7 +137,7 @@ class Round4(IdealView):
 {}"""
 
     async def next(self, r: Request):
-        return await Round1.switch(r)
+        return await Success.switch(r)
 
     @cached_property
     def commands(self):
