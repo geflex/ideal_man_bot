@@ -152,14 +152,15 @@ class Round4(IdealView):
 
 
 class Success(View):
+    @cached_property
     def commands(self):
         return [[Command('Начать сначала', Round1.switch)]]
 
-    def default(self, r: Request) -> Awaitable[Any]:
+    async def default(self, r: Request) -> Awaitable[Any]:
         return await Round1.switch(r)
 
     @classmethod
-    def switch(cls, r: Request) -> Awaitable[Any]:
+    async def switch(cls, r: Request) -> Awaitable[Any]:
         await super().switch(r)
         return r.resp("""Понял - принял. Прибуду через 40 минут""")
 
