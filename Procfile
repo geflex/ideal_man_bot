@@ -1,1 +1,1 @@
-worker: python schedule/main.py
+worker: python ideal_man_bot/main.py
